@@ -4,12 +4,11 @@
 
 "use strict";
 
-function Sphere( slices, stacks, vertexShader, fragmentShader ) { 
+function Sphere(gl, slices, stacks, vertShaderID, fragShaderID) {
     var i, j;  // loop counters
 
-    var program = initShaders(gl,
-        vertexShader || "Sphere-vertex-shader",
-        fragmentShader || "Sphere-fragment-shader");
+
+    var program = initShaders(gl, vertShaderID, fragShaderID);
 
     var nSlices = slices || 20; // Default number of slices
     var nStacks = stacks || 12; // Default number of stacks
@@ -47,13 +46,13 @@ function Sphere( slices, stacks, vertexShader, fragmentShader ) {
     // Generate the indices for the North Pole cap.  "indices.length" will
     // be zero at this point, but you'll see the pattern of using indices'
     // length value in future computations, so we use it here as well to
-    // not break the pattern 
-    var start = indices.length; // this will be zero here, but 
+    // not break the pattern
+    var start = indices.length; // this will be zero here, but
     var offset = start * 2 /* sizeof(gl.UNSIGNED_SHORT) */ ;
 
     var n = 1; // starting value of each "row" of indices
-    var m;  // 
-    
+    var m;  //
+
     indices.push(0);
     for (i = 0; i < nSlices; ++i) {
         m = n + i;
@@ -112,6 +111,7 @@ function Sphere( slices, stacks, vertexShader, fragmentShader ) {
         location: gl.getAttribLocation(program, "vPosition")
     };
 
+
     gl.bindBuffer(gl.ARRAY_BUFFER, vPosition.buffer);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions),
         gl.STATIC_DRAW);
@@ -132,7 +132,8 @@ function Sphere( slices, stacks, vertexShader, fragmentShader ) {
 
     this.render = function () {
 
-        gl.useProgram(program);
+        gl.useProgram(this.program);
+
 
         gl.bindBuffer(gl.ARRAY_BUFFER, vPosition.buffer);
         gl.vertexAttribPointer(vPosition.location, vPosition.numComponents,
@@ -148,4 +149,5 @@ function Sphere( slices, stacks, vertexShader, fragmentShader ) {
                 p.count, gl.UNSIGNED_SHORT, p.offset);
         }
     };
+
 };
