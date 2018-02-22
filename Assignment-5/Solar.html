@@ -14,8 +14,10 @@
   <script type="x-shader/x-vertex" id="Sphere-vertex-shader">
     attribute vec4  vPosition;
     uniform mat4 rotationMatrix;
+    
     uniform mat4  MV;
     uniform mat4  P;
+    
     void main()
     {
       gl_Position = P * MV * vPosition;
