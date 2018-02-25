@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="../Common/webgl-utils.js"></script>
+  <script src="../Common/initShaders.js"></script>
+  <script src="../Common/MV.js"></script>
+  <script src="rCube.js"></script>
+  <script src="cube.js"></script>
+  
+<script id="Cube-vertex-shader" type="x-shader/x-vertex">
+attribute vec4 vPosition;
+//attribute vec3 vColor;
+//varying vec4 fColor;
+uniform mat4 MV;
+uniform mat4  P;
+attribute vec2 aTextureCoord;
+varying vec2 vTextureCoord;
+void main()
+{
+	gl_Position = P * MV * vPosition;
+	//fColor = vec4(vColor, 1.0);
+	vTextureCoord = aTextureCoord;
+	
+}
+</script>
+<script id = "Cube-fragment-shader" type="x-shader/x-fragment">
+precision highp float;
+//varying vec4 fColor;
+varying vec2 vTextureCoord;
+uniform sampler2D uSampler;
+void main()
+{
+    //gl_FragColor = vec4(fColor);
+    gl_FragColor = texture2D(uSampler, vTextureCoord);
+}
+</script>
+</head>
+<body>
+<canvas id="webgl-canvas" width="1024" height="1024" style="background-color: #0000FF"></canvas>
+</body>
+</html>
