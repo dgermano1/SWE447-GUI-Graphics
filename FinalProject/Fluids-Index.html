@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta lang="en" charset="UTF-8">
+  <title>2D Fluid Simulator</title>
+  
+  <script type="text/javascript" src="Fluid-Main.js"></script>
+  <link rel="stylesheet" href="Style.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="Reset.css" type="text/css" media="screen" />
+  
+</head>
+
+<body>
+  
+ <div id="canvas_wrapper">
+    <canvas id="my_canvas" width="800" height="800"></canvas>
+  </div>
+  
+  <div class="button_wrapper_1">
+    
+      <button id="b0_start_stop" class="clean_gray"><span id="b0_text">start</span></button>
+      
+      <button id="b1_reset" class="clean_gray"><span id="b1_text">reset</span></button>
+      
+      <span class="clr_flt"></span>
+      
+  </div> 
+  
+  <div class="button_wrapper_1">
+    
+    <button id="b2_color" class="clean_gray"><span id="b2_text">white</span></button>
+      
+    <button id="b3_fps" class="clean_gray">FPS: <span id="b3_text">--</span></button>
+    
+    <span class="clr_flt"></span>
+     
+</div>
+
+<script type="text/javascript" src="Fluids.js"></script>
+<script type="text/javascript" src="Button-Function.js"></script>
+  
+</body>
+
+</html>
